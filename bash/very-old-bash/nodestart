@@ -1,0 +1,16 @@
+#!/bin/bash
+DEST="/var/www/ghost/"
+CURRENT=$(pwd)
+
+function whereami { 
+	if [[ $CURRENT == $DEST ]]; then
+		echo "You are currently in $DEST" exit 1
+	else
+		echo "Moving to correct destination" 
+		cd $DEST
+		NODE_ENV=production pm2 -f start index.js --name "Ghost"
+	exit 1
+	fi
+}
+whereami
+exit
